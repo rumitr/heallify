@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Movies</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+	<div class="container">
+		<div class=" col-9 m-5 p-0 border" id="app">
+			<header class="col-12 text-center border mb-4  pt-1 pb-1">Now Playing</header>
+			<div class="col-12 d-inline-flex border justify-content-between mb-4">
+				<input v-model="search" class="form-control ml-1" type="text" name="name" placeholder="movie name">
+				<select @change="getMovies();" v-model="month" class="form-control ml-1" name="month">
+					<option value="" > Select Month</option>
+					<option v-for="(month, index) in months" :value="index+1">{{month}}</option>
+				</select>
+				<button @click="refreshDatabase()" class="btn ml-1">Refresh</button>
+			</div>
+			<movie-list v-bind:movies="filteredMovies"></movie-list>
+		</div>
+	</div>					
+
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="js/components/MovieList.js"></script>
+	<script type="module" src="js/main.js"></script>
+</body>
+</html>
